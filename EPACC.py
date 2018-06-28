@@ -9,7 +9,7 @@ tree = html.fromstring(page.content)
 str_title = tree.xpath('//h1[@class="page-title"]/text()')
 
 print(str_title)
-baseline = "This page is being updated."
+baseline = "xxThis page is being updated."
 
 print("Page Title: %s" % str_title[0])
 

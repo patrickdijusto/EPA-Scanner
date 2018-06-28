@@ -30,11 +30,11 @@ else:
 		lex = len(str_title[0])
 		if lex < 210:
 			message = "The EPA Climate Change website has changed.  The new title is: "+str_title[0]
-			api.PostUpdate(message)
+			api.PostDirectMessage(message,,"@ejgertz")
 			print(message)
 		else:
 			message = "The EPA Climate Change website has changed.  The new title is: "+(str_title[0][:210])
-			api.PostUpdate(message)
+			api.PostDirectMessage(message,,"@ejgertz")
 			print(message)
 	
         #api.PostUpdate(message)

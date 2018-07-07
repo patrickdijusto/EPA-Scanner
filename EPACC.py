@@ -2,6 +2,8 @@ from lxml import html
 import requests
 import twitter
 from settings import *
+import datetime
+
 
 page = requests.get('https://www.epa.gov/climatechange')
 tree = html.fromstring(page.content)
@@ -9,9 +11,21 @@ tree = html.fromstring(page.content)
 str_title = tree.xpath('//h1[@class="page-title"]/text()')
 
 print(str_title)
-baseline = "xxThis page is being updated."
+
+file = open("filename.txt","r")
+
+baseline = file.read()
+
+file.close()
+
+
+
+#baseline = "This page is being updated."
 
 print("Page Title: %s" % str_title[0])
+print("Baseline  : %s" % baseline)
+
+
 
 if(str_title[0] == baseline):
 		print("NO CHANGE!!!  NO CHANGE!!!")
@@ -30,11 +44,11 @@ else:
 		lex = len(str_title[0])
 		if lex < 210:
 			message = "The EPA Climate Change website has changed.  The new title is: "+str_title[0]
-			api.PostDirectMessage(message,,"@ejgertz")
+			api.PostDirectMessage(message,screen_name="@patrickdijusto")
 			print(message)
 		else:
 			message = "The EPA Climate Change website has changed.  The new title is: "+(str_title[0][:210])
-			api.PostDirectMessage(message,,"@ejgertz")
+			api.PostDirectMessage(message,screen_name="@patrickdijusto")
 			print(message)
 	
         #api.PostUpdate(message)
@@ -42,3 +56,10 @@ else:
 		print(api)
 
 	
+
+
+file = open("filename.txt","w")
+
+file.write(str_title[0])
+
+file.close()
